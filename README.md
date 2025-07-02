@@ -21,12 +21,15 @@ El núcleo de la plataforma es un modelo de red neuronal recurrente <strong>Long
   <img src="ArquitecturaLTSM.png" alt="Arquitectura del Modelo LSTM" width="200">
 </p>
 
-<hr>
 
 <h2>🏗️ Arquitectura de Infraestructura en AWS</h2>
 
 <p>
-[cite_start]La solución está desplegada en una arquitectura <strong>serverless y orientada a eventos en AWS</strong>, lo que garantiza escalabilidad, flexibilidad y eficiencia en costos[cite: 230].
+La solución está desplegada en una arquitectura <strong>serverless y orientada a eventos en AWS</strong>, lo que garantiza escalabilidad, flexibilidad y eficiencia en costos.
+</p>
+
+<p align="center">
+  <img src="Infraestructura.png" alt="Arquitectura de Infraestructura" width="70%">
 </p>
 
 <ol>
@@ -40,27 +43,23 @@ El núcleo de la plataforma es un modelo de red neuronal recurrente <strong>Long
   <li><strong>Visualización:</strong> Grafana se conecta a Timestream para mostrar dashboards en tiempo real.</li>
 </ol>
 
-<p align="center">
-  <img src="Infraestructura.jpg" alt="Arquitectura de Infraestructura" width="70%">
-</p>
 
-<hr>
 
 <h2>📊 Dashboards de Monitorización en Tiempo Real</h2>
 <p>
-[cite_start]Se desarrollaron dashboards en Grafana para visualizar el estado de la maquinaria y las predicciones del modelo en tiempo real, proporcionando inteligencia accionable al personal de planta[cite: 232, 602].
+Se desarrollaron dashboards en Grafana para visualizar el estado de la maquinaria y las predicciones del modelo en tiempo real, proporcionando inteligencia accionable al personal de planta.
 </p>
 
 <h3>Estado Normal</h3>
 <p>El dashboard muestra una probabilidad de fallo baja y los valores de los sensores dentro de los rangos operativos normales.</p>
 <p align="center">
-  <img src="Monitorizacion_OK.jpg" alt="Dashboard en Estado Normal" width="70%">
+  <img src="Monitorizacion_OK.png" alt="Dashboard en Estado Normal" width="70%">
 </p>
 
 <h3>Predicción de Falla</h3>
 <p>El sistema detecta una anomalía y la probabilidad de fallo aumenta significativamente, alertando sobre un posible problema inminente.</p>
 <p align="center">
-  <img src="Monitorizacion_Falla1.jpg" alt="Dashboard con Predicción de Falla" width="70%">
+  <img src="Monitorizacion_Falla1.png" alt="Dashboard con Predicción de Falla" width="70%">
 </p>
 
 <h3>Máquina Detenida</h3>
@@ -69,18 +68,16 @@ El núcleo de la plataforma es un modelo de red neuronal recurrente <strong>Long
   <img src="Monitorizacion_Parada.png" alt="Dashboard con Máquina Detenida" width="70%">
 </p>
 
-<hr>
 
 <h2>🔔 Sistema de Alertas Predictivas</h2>
 <p>
-[cite_start]Cuando el modelo predice una alta probabilidad de fallo, el sistema envía automáticamente una <strong>alerta por correo electrónico</strong> al equipo de mantenimiento[cite: 114]. La notificación incluye los valores de los sensores al momento de la alarma para facilitar un diagnóstico rápido.
+Cuando el modelo predice una alta probabilidad de fallo, el sistema envía automáticamente una <strong>alerta por correo electrónico</strong> al equipo de mantenimiento. La notificación incluye los valores de los sensores al momento de la alarma para facilitar un diagnóstico rápido.
 </p>
 
 <p align="center">
   <img src="AlertaFallaPredictiva.png" alt="Notificación de Alerta de Falla Predictiva" width="70%">
 </p>
 
-<hr>
 
 <h2>🎯 Resultados del Modelo</h2>
 
@@ -88,10 +85,10 @@ El núcleo de la plataforma es un modelo de red neuronal recurrente <strong>Long
 El modelo predictivo fue evaluado rigurosamente, demostrando una alta efectividad para la detección de fallos:
 </p>
 <ul>
-  [cite_start]<li><strong>Precisión Global:</strong> 96% [cite: 12]</li>
-  [cite_start]<li><strong>Recall (Sensibilidad):</strong> 99% [cite: 12]</li>
+  <li><strong>Precisión Global:</strong> 96% </li>
+  <li><strong>Recall (Sensibilidad):</strong> 99% </li>
 </ul>
 
 <p>
-[cite_start]Estos resultados confirman la viabilidad técnica de la solución y su capacidad para minimizar las paradas inesperadas[cite: 12].
+Estos resultados confirman la viabilidad técnica de la solución y su capacidad para minimizar las paradas inesperadas.
 </p>

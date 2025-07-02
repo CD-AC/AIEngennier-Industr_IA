@@ -3,23 +3,22 @@
 </div>
 
 <p>
-[cite_start]Este proyecto presenta <strong>Industr_IA</strong>, una plataforma integral de mantenimiento predictivo diseñada para anticipar fallos en máquinas industriales hasta con tres días de antelación[cite: 9]. Utilizando un modelo de Deep Learning (LSTM), la plataforma analiza datos de sensores en tiempo real para minimizar las paradas de producción no planificadas y optimizar las operaciones de mantenimiento.
+Este proyecto presenta <strong>Industr_IA</strong>, una plataforma integral de mantenimiento predictivo diseñada para anticipar fallos en máquinas industriales hasta con tres días de antelación. Utilizando un modelo de Deep Learning (LSTM), la plataforma analiza datos de sensores en tiempo real para minimizar las paradas de producción no planificadas y optimizar las operaciones de mantenimiento.
 </p>
 
 <p align="center">
   <img src="xd.gif" alt="Demostración de la Plataforma" width="80%">
 </p>
 
-<hr>
 
 <h2>🤖 Arquitectura del Modelo LSTM</h2>
 
 <p>
-[cite_start]El núcleo de la plataforma es un modelo de red neuronal recurrente <strong>Long Short-Term Memory (LSTM)</strong> apilado[cite: 11, 192]. Esta arquitectura es ideal para analizar secuencias de datos temporales de múltiples sensores, permitiendo aprender patrones complejos que preceden a un fallo. [cite_start]El modelo incluye capas de regularización como Dropout y Batch Normalization para evitar el sobreajuste y mejorar la generalización[cite: 339].
+El núcleo de la plataforma es un modelo de red neuronal recurrente <strong>Long Short-Term Memory (LSTM)</strong> apilado. Esta arquitectura es ideal para analizar secuencias de datos temporales de múltiples sensores, permitiendo aprender patrones complejos que preceden a un fallo. El modelo incluye capas de regularización como Dropout y Batch Normalization para evitar el sobreajuste y mejorar la generalización.
 </p>
 
 <p align="center">
-  <img src="ArquitecturaLTSM.png" alt="Arquitectura del Modelo LSTM" width="600">
+  <img src="ArquitecturaLTSM.png" alt="Arquitectura del Modelo LSTM" width="400">
 </p>
 
 <hr>

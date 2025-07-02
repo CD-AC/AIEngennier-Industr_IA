@@ -18,7 +18,7 @@ El núcleo de la plataforma es un modelo de red neuronal recurrente <strong>Long
 </p>
 
 <p align="center">
-  <img src="ArquitecturaLTSM.png" alt="Arquitectura del Modelo LSTM" width="400">
+  <img src="ArquitecturaLTSM.png" alt="Arquitectura del Modelo LSTM" width="200">
 </p>
 
 <hr>

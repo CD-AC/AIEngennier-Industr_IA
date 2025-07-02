@@ -1,6 +1,6 @@
 # Industr_IA: Plataforma de Mantenimiento Predictivo para la Industria 4.0
 
-[cite_start] Este proyecto presenta **Industr_IA**, una plataforma integral de mantenimiento predictivo diseñada para anticipar fallos en máquinas industriales hasta con tres días de antelación. [cite: 9] [cite_start]Utilizando un modelo de Deep Learning (LSTM), la plataforma analiza datos de sensores en tiempo real para minimizar las paradas de producción no planificadas y optimizar las operaciones de mantenimiento. [cite: 8, 11]
+Este proyecto presenta **Industr_IA**, una plataforma integral de mantenimiento predictivo diseñada para anticipar fallos en máquinas industriales hasta con tres días de antelación. Utilizando un modelo de Deep Learning (LSTM), la plataforma analiza datos de sensores en tiempo real para minimizar las paradas de producción no planificadas y optimizar las operaciones de mantenimiento.
 
 ![Demostración de la Plataforma](xd.gif)
 
@@ -8,7 +8,7 @@
 
 ## 🤖 Arquitectura del Modelo LSTM
 
-[cite_start]El núcleo de la plataforma es un modelo de red neuronal recurrente **Long Short-Term Memory (LSTM)** apilado. [cite: 192] [cite_start]Esta arquitectura es ideal para analizar secuencias de datos temporales de múltiples sensores, permitiendo aprender patrones complejos que preceden a un fallo. [cite: 11, 512, 513] [cite_start]El modelo incluye capas de regularización como Dropout y Batch Normalization para evitar el sobreajuste y mejorar la generalización. [cite: 335, 339]
+El núcleo de la plataforma es un modelo de red neuronal recurrente **Long Short-Term Memory (LSTM)** apilado. Esta arquitectura es ideal para analizar secuencias de datos temporales de múltiples sensores, permitiendo aprender patrones complejos que preceden a un fallo. El modelo incluye capas de regularización como Dropout y Batch Normalization para evitar el sobreajuste y mejorar la generalización.
 
 ![Arquitectura del Modelo LSTM](ArquitecturaLTSM.png)
 

@@ -10,7 +10,7 @@ Este proyecto, <strong>Industr_IA</strong>, es una plataforma integral de manten
   <img src="xd.gif" alt="Demostración de la Plataforma" width="80%">
 </p>
 
----
+----
 
 ## 🚀 Tecnologías Utilizadas
 *   **Proveedor Cloud:** AWS (Amazon Web Services)

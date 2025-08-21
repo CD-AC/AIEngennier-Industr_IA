@@ -1,162 +1,162 @@
 <div align="center">
-  <h1>Industr_IA: Predictive Maintenance Platform for Industry 4.0</h1>
+  <h1>Industr_IA: Plataforma de Mantenimiento Predictivo para la Industria 4.0</h1>
 </div>
 
 <p>
-This project, <strong>Industr_IA</strong>, is a comprehensive predictive maintenance platform designed to anticipate failures in industrial machinery up to three days in advance. Using a Deep Learning (LSTM) model, the platform analyzes real-time sensor data to minimize unplanned production stoppages and optimize maintenance operations.
+Este proyecto, <strong>Industr_IA</strong>, es una plataforma integral de mantenimiento predictivo diseñada para anticipar fallos en máquinas industriales hasta con tres días de antelación. Utilizando un modelo de Deep Learning (LSTM), la plataforma analiza datos de sensores en tiempo real para minimizar las paradas de producción no planificadas y optimizar las operaciones de mantenimiento.
 </p>
 
 <p align="center">
-  <img src="xd.gif" alt="Platform Demonstration" width="80%">
+  <img src="xd.gif" alt="Demostración de la Plataforma" width="80%">
 </p>
 
 ---
 
-## 🚀 Technologies Used
-*   **Cloud Provider:** AWS (Amazon Web Services)
-*   **Infrastructure as Code:** Terraform
-*   **Machine Learning Model:** Python, TensorFlow (Keras), Scikit-learn
-*   **Data Ingestion & Processing:** AWS IoT Core, AWS Lambda
-*   **Data Storage:** Amazon Timestream, Amazon S3
-*   **Model Deployment:** Amazon SageMaker
-*   **Monitoring & Alerting:** Amazon CloudWatch, Amazon SNS
-*   **Visualization:** Grafana
+## 🚀 Tecnologías Utilizadas
+*   **Proveedor Cloud:** AWS (Amazon Web Services)
+*   **Infraestructura como Código:** Terraform
+*   **Modelo de Machine Learning:** Python, TensorFlow (Keras), Scikit-learn
+*   **Ingesta y Procesamiento de Datos:** AWS IoT Core, AWS Lambda
+*   **Almacenamiento de Datos:** Amazon Timestream, Amazon S3
+*   **Despliegue del Modelo:** Amazon SageMaker
+*   **Monitorización y Alertas:** Amazon CloudWatch, Amazon SNS
+*   **Visualización:** Grafana
 
 ---
 
-## 🏗️ AWS Infrastructure Architecture
+## 🏗️ Arquitectura de Infraestructura en AWS
 
-The solution is deployed on a **serverless, event-driven architecture in AWS**, ensuring scalability, flexibility, and cost efficiency.
+La solución está desplegada en una **arquitectura serverless y orientada a eventos en AWS**, lo que garantiza escalabilidad, flexibilidad y eficiencia en costos.
 
 <p align="center">
-  <img src="Img/Infraestructura.png" alt="Infrastructure Architecture" width="70%">
+  <img src="Img/Infraestructura.png" alt="Arquitectura de Infraestructura" width="70%">
 </p>
 
-### Data Workflow
-1.  **Plant:** Sensors on the packaging machine send data via an industrial Access Point to an MQTT topic (`topic/maquinas/+`).
-2.  **Ingestion:** An **AWS IoT Core** rule subscribes to the MQTT topic. Upon receiving a message, it triggers multiple actions.
-3.  **Raw Data Storage:** The raw JSON payload is stored in an **Amazon S3** bucket for backup and future analysis.
-4.  **Time-Series Storage:** The data is written to an **Amazon Timestream** database, which is optimized for time-series data and serves as the source for the Grafana dashboards.
-5.  **Real-Time Processing:** The IoT rule invokes an **AWS Lambda** function, passing the sensor data as the event payload.
-6.  **Prediction:** The Lambda function preprocesses the data using a saved `StandardScaler` and invokes a **Amazon SageMaker Endpoint** to get a failure prediction.
-7.  **Model Hosting:** The LSTM model is hosted on a SageMaker Endpoint, which automatically scales to handle prediction requests.
-8.  **Alerting:** If the model predicts a high probability of failure (`pre_falla`), the Lambda function publishes a message to an **Amazon SNS** topic, which sends an email notification to the maintenance team.
-9.  **Error Handling:** If the IoT Core rule fails to process a message, it is sent to an **Amazon SQS** queue as a Dead-Letter Queue (DLQ) for later inspection.
-10. **Visualization:** **Grafana** connects directly to Amazon Timestream to display real-time dashboards of machinery status and model predictions.
+### Flujo de Datos
+1.  **Planta:** Los sensores en la máquina envasadora envían datos a través de un Access Point industrial a un topic MQTT (`topic/maquinas/+`).
+2.  **Ingesta:** Una regla de **AWS IoT Core** se suscribe al topic MQTT. Al recibir un mensaje, desencadena múltiples acciones.
+3.  **Almacenamiento de Datos Crudos:** El payload JSON crudo se almacena en un bucket de **Amazon S3** para respaldo y análisis futuros.
+4.  **Almacenamiento en Series de Tiempo:** Los datos se escriben en una base de datos de **Amazon Timestream**, optimizada para series temporales y que sirve como fuente para los dashboards de Grafana.
+5.  **Procesamiento en Tiempo Real:** La regla de IoT invoca una función **AWS Lambda**, pasando los datos del sensor como payload del evento.
+6.  **Predicción:** La función Lambda preprocesa los datos usando un `StandardScaler` guardado e invoca un **Endpoint de Amazon SageMaker** para obtener una predicción de fallo.
+7.  **Alojamiento del Modelo:** El modelo LSTM está alojado en un Endpoint de SageMaker, que escala automáticamente para manejar las solicitudes de predicción.
+8.  **Alertas:** Si el modelo predice una alta probabilidad de fallo (`pre_falla`), la función Lambda publica un mensaje en un topic de **Amazon SNS**, que envía una notificación por correo electrónico al equipo de mantenimiento.
+9.  **Manejo de Errores:** Si la regla de IoT Core no puede procesar un mensaje, este se envía a una cola de **Amazon SQS** como Dead-Letter Queue (DLQ) para su inspección posterior.
+10. **Visualización:** **Grafana** se conecta directamente a Amazon Timestream para mostrar dashboards en tiempo real del estado de la maquinaria y las predicciones del modelo.
 
 ---
 
-## 🤖 LSTM Model Architecture
+## 🤖 Arquitectura del Modelo LSTM
 
-The core of the platform is a stacked **Long Short-Term Memory (LSTM)** recurrent neural network. This architecture is ideal for analyzing time-series data from multiple sensors, allowing it to learn the complex patterns that precede a failure. The model includes regularization layers like Dropout and Batch Normalization to prevent overfitting and improve generalization.
+El núcleo de la plataforma es una red neuronal recurrente **Long Short-Term Memory (LSTM)** apilada. Esta arquitectura es ideal para analizar secuencias de datos temporales de múltiples sensores, permitiendo aprender patrones complejos que preceden a un fallo. El modelo incluye capas de regularización como Dropout y Batch Normalization para evitar el sobreajuste y mejorar la generalización.
 
 <p align="center">
-  <img src="Img/ArquitecturaLTSM.png" alt="LSTM Model Architecture" width="200">
+  <img src="Img/ArquitecturaLTSM.png" alt="Arquitectura del Modelo LSTM" width="200">
 </p>
 
 ---
 
-## 📂 Project Structure
+## 📂 Estructura del Proyecto
 
 ```
 AIEngennier-Industr_IA/
 ├── DataSet/
-│   └── ds_envasadoras.csv         # Training and validation dataset
+│   └── ds_envasadoras.csv         # Dataset de entrenamiento y validación
 ├── Img/
-│   └── *.png                     # Images and diagrams for documentation
+│   └── *.png                     # Imágenes y diagramas para la documentación
 ├── terraform_project_AWS/
 │   ├── lambda_function/
-│   │   ├── lambda_function.py    # Python code for the inference Lambda
-│   │   └── standard_scaler.save  # Scaler used for data preprocessing
+│   │   ├── lambda_function.py    # Código Python para la Lambda de inferencia
+│   │   └── standard_scaler.save  # Scaler para el preprocesamiento de datos
 │   ├── sagemaker_model/
 │   │   ├── code/
-│   │   │   └── inference.py      # Python script for SageMaker model serving
-│   │   └── model.tar.gz          # Compressed model artifacts
-│   ├── *.tf                      # Terraform files for AWS infrastructure
-│   └── variables.tf              # Input variables for Terraform
-├── best_lstm_model.keras         # Trained Keras model
-├── Industr_IA_vF.ipynb           # Jupyter Notebook for model training (stored in Git LFS)
-└── README.md                     # This file
+│   │   │   └── inference.py      # Script de Python para servir el modelo en SageMaker
+│   │   └── model.tar.gz          # Artefactos del modelo comprimidos
+│   ├── *.tf                      # Archivos de Terraform para la infraestructura de AWS
+│   └── variables.tf              # Variables de entrada para Terraform
+├── best_lstm_model.keras         # Modelo Keras entrenado
+├── Industr_IA_vF.ipynb           # Jupyter Notebook para el entrenamiento (almacenado en Git LFS)
+└── README.md                     # Este archivo
 ```
 
 ---
 
-## 🛠️ Deployment
+## 🛠️ Despliegue
 
-The entire AWS infrastructure is managed by Terraform.
+Toda la infraestructura de AWS se gestiona con Terraform.
 
-### Prerequisites
-*   [Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli) installed.
-*   An AWS account with credentials configured for Terraform.
-*   The `model.tar.gz` artifact uploaded to an S3 bucket.
+### Prerrequisitos
+*   Tener [Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli) instalado.
+*   Una cuenta de AWS con credenciales configuradas para Terraform.
+*   El artefacto `model.tar.gz` subido a un bucket de S3.
 
-### Steps
-1.  **Navigate to the Terraform directory:**
+### Pasos
+1.  **Navega al directorio de Terraform:**
     ```bash
     cd terraform_project_AWS
     ```
-2.  **Initialize Terraform:**
-    This command downloads the necessary AWS provider plugins.
+2.  **Inicializa Terraform:**
+    Este comando descarga los plugins necesarios del proveedor de AWS.
     ```bash
     terraform init
     ```
-3.  **Configure Variables:**
-    Create a `terraform.tfvars` file or export environment variables to set the required values from `variables.tf`, such as:
-    *   `aws_region`: The AWS region to deploy to (e.g., "us-east-1").
-    *   `alert_email`: The email address to receive SNS notifications.
-    *   `sagemaker_model_s3_bucket`: The name of the S3 bucket containing the model artifact.
-    *   `sagemaker_model_s3_key`: The key (path) to the `model.tar.gz` file in the bucket.
+3.  **Configura las Variables:**
+    Crea un archivo `terraform.tfvars` o exporta variables de entorno para establecer los valores requeridos de `variables.tf`, tales como:
+    *   `aws_region`: La región de AWS donde se desplegará (ej. "us-east-1").
+    *   `alert_email`: La dirección de correo para recibir notificaciones de SNS.
+    *   `sagemaker_model_s3_bucket`: El nombre del bucket de S3 que contiene el artefacto del modelo.
+    *   `sagemaker_model_s3_key`: La ruta (key) al archivo `model.tar.gz` en el bucket.
 
-4.  **Plan the deployment:**
-    This command shows you what resources will be created.
+4.  **Planifica el despliegue:**
+    Este comando muestra los recursos que se crearán.
     ```bash
     terraform plan
     ```
-5.  **Apply the configuration:**
-    This command provisions all the AWS resources. Type `yes` when prompted.
+5.  **Aplica la configuración:**
+    Este comando aprovisiona todos los recursos de AWS. Escribe `yes` cuando se te solicite.
     ```bash
     terraform apply
     ```
 
 ---
 
-## 📊 Real-Time Monitoring Dashboards
-Dashboards were developed in Grafana to visualize machinery status and model predictions in real time, providing actionable intelligence to plant personnel.
+## 📊 Dashboards de Monitorización en Tiempo Real
+Se desarrollaron dashboards en Grafana para visualizar el estado de la maquinaria y las predicciones del modelo en tiempo real, proporcionando inteligencia accionable al personal de planta.
 
-### Normal State
-The dashboard shows a low probability of failure and sensor values within normal operating ranges.
+### Estado Normal
+El dashboard muestra una probabilidad de fallo baja y los valores de los sensores dentro de los rangos operativos normales.
 <p align="center">
-  <img src="Img/Monitorizacion_OK.png" alt="Dashboard in Normal State" width="70%">
+  <img src="Img/Monitorizacion_OK.png" alt="Dashboard en Estado Normal" width="70%">
 </p>
 
-### Failure Prediction
-The system detects an anomaly, and the probability of failure increases significantly, warning of a potential impending problem.
+### Predicción de Falla
+El sistema detecta una anomalía y la probabilidad de fallo aumenta significativamente, alertando sobre un posible problema inminente.
 <p align="center">
-  <img src="Img/Monitorizacion_Falla.png" alt="Dashboard with Failure Prediction" width="70%">
+  <img src="Img/Monitorizacion_Falla.png" alt="Dashboard con Predicción de Falla" width="70%">
 </p>
 
-### Machine Stopped
-When the machine is stopped, the sensors do not report data, which is immediately reflected on the dashboard.
+### Máquina Detenida
+Cuando la máquina está parada, los sensores no reportan datos, lo cual se refleja inmediatamente en el dashboard.
 <p align="center">
-  <img src="Img/Monitorizacion_Parada.png" alt="Dashboard with Machine Stopped" width="70%">
-</p>
-
----
-
-## 🔔 Predictive Alert System
-When the model predicts a high probability of failure, the system automatically sends an **email alert** to the maintenance team. The notification includes the sensor values at the time of the alarm to facilitate a quick diagnosis.
-
-<p align="center">
-  <img src="Img/AlertaFallaPredictiva.png" alt="Predictive Failure Alert Notification" width="70%">
+  <img src="Img/Monitorizacion_Parada.png" alt="Dashboard con Máquina Detenida" width="70%">
 </p>
 
 ---
 
-## 🎯 Model Results
+## 🔔 Sistema de Alertas Predictivas
+Cuando el modelo predice una alta probabilidad de fallo, el sistema envía automáticamente una **alerta por correo electrónico** al equipo de mantenimiento. La notificación incluye los valores de los sensores al momento de la alarma para facilitar un diagnóstico rápido.
 
-The predictive model was rigorously evaluated, demonstrating high effectiveness in detecting failures:
+<p align="center">
+  <img src="Img/AlertaFallaPredictiva.png" alt="Notificación de Alerta de Falla Predictiva" width="70%">
+</p>
 
-*   **Overall Accuracy:** 96%
-*   **Recall (Sensitivity):** 99%
+---
 
-These results confirm the technical feasibility of the solution and its ability to minimize unexpected downtime.
+## 🎯 Resultados del Modelo
+
+El modelo predictivo fue evaluado rigurosamente, demostrando una alta efectividad para la detección de fallos:
+
+*   **Precisión Global (Accuracy):** 96%
+*   **Sensibilidad (Recall):** 99%
+
+Estos resultados confirman la viabilidad técnica de la solución y su capacidad para minimizar las paradas inesperadas.
